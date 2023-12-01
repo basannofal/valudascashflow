@@ -24,7 +24,12 @@ const AddPayment = ({ mid }) => {
   // state
   const [validationError, setValidationError] = useState("");
   const [isFormValid, setIsFormValid] = useState(false); // Track form validity
-  let username = localStorage.getItem("user");
+  let username = "";
+  if (typeof window !== "undefined") {
+    // Check if window is defined (client-side)
+    username = localStorage.getItem("user");
+  }
+
 
   const [PaymentData, setPaymentData] = useState({
     amount: "",
