@@ -16,37 +16,34 @@ export default async function handler(req, res) {
       res
         .status(500)
         .json({ error: 1, msg: "Category Cannot Fetch... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
   if (req.method == "DELETE") {
     try {
       const { id } = req.query;
-      console.log(id);
       // Query the database
       const q = "DELETE FROM cf_category WHERE id = ?";
-      console.log(q);
       const [rows] = await conn.query(q, [id]);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
       if (error.toString().includes("Cannot delete or update a parent row")) {
-        res
-          .status(500)
-          .json({
-            error: 1,
-            msg: "Category Not Deleted... Already Use In Any Payment",
-          });
+        res.status(500).json({
+          error: 1,
+          msg: "Category Not Deleted... Already Use In Any Payment",
+        });
       } else {
-        res
-          .status(500)
-          .json({
-            error: 1,
-            msg: "Category Cannot Delete... Check Connection",
-          });
+        res.status(500).json({
+          error: 1,
+          msg: "Category Cannot Delete... Check Connection",
+        });
       }
+    } finally {
+      conn.releaseConnection();
     }
   }
 
@@ -56,17 +53,17 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "UPDATE cf_category SET `name` = ?, `sub_category` = ? WHERE id = ?";
-      console.log(q);
       const data = [categoryName, subcategory, id];
       const [rows] = await conn.query(q, data);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
       res
         .status(500)
         .json({ error: 1, msg: "Category Cannot Update... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

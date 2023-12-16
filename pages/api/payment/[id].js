@@ -15,34 +15,34 @@ export default async function handler(req, res) {
       res
         .status(500)
         .json({ error: 1, msg: "Payment Cannot Fetch... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
   if (req.method == "DELETE") {
     try {
       const { id } = req.query;
-      console.log(id);
       // Query the database
       const q = "DELETE FROM cf_main_payment WHERE id = ?";
-      console.log(q);
+
       const [rows] = await conn.query(q, [id]);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
       if (error.toString().includes("Cannot delete or update a parent row")) {
-        res
-          .status(500)
-          .json({
-            error: 1,
-            msg: "Payment Not Deleted... Already Use In Any Payment",
-          });
+        res.status(500).json({
+          error: 1,
+          msg: "Payment Not Deleted... Already Use In Any Payment",
+        });
       } else {
         res
           .status(500)
           .json({ error: 1, msg: "Payment Cannot Delete... Check Connection" });
       }
+    } finally {
+      conn.releaseConnection();
     }
   }
 
@@ -52,16 +52,16 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "UPDATE `cf_main_payment` SET `amount`= ?, `collected_by`= ?, `collected_user`= ?, `date`= ?, `note`= ?, `c_id`= ?  WHERE id = ?";
-      console.log(q);
       const data = [amount, collectedby, username, date, note, cid, id];
       const [rows] = await conn.query(q, data);
-      console.log(data);
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
       res
         .status(500)
         .json({ error: 1, msg: "Payment Cannot Update... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

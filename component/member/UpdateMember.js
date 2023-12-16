@@ -66,7 +66,7 @@ const UpdateMember = ({ id }) => {
   // Save DAta
   const handleSubmit = (e) => {
     e.preventDefault();
-    let username = localStorage.getItem("user");
+    let username = localStorage.getItem("username");
 
     // Check if member already exists with the same name
     const memberExists = members.some(

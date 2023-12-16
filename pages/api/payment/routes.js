@@ -7,17 +7,17 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "INSERT INTO `cf_main_payment`(`amount`, `collected_by`, `collected_user`, `date`, `note`, `m_id`, `c_id`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-      console.log(q);
       const data = [amount, collectedby, username, date, note, mid, cid];
       const [rows] = await conn.query(q, data);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
       res
         .status(500)
         .json({ error: 1, msg: "Payment Cannot Add... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
@@ -57,15 +57,15 @@ export default async function handler(req, res) {
       //   ORDER BY
       //     mp.id DESC
       // `;
-      console.log(q);
       const [rows] = await conn.query(q);
-      console.log(rows);
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
       res
         .status(500)
         .json({ error: 1, msg: "Payment Cannot Fetch... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

@@ -38,8 +38,9 @@ const AddBorrowDeposite = ({ mid }) => {
   let username = "";
   if (typeof window !== "undefined") {
     // Check if window is defined (client-side)
-    username = localStorage.getItem("user");
+    username = localStorage.getItem("username");
   }
+
   const [PaymentData, setPaymentData] = useState({
     amount: "",
     collectedby: username,

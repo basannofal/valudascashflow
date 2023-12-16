@@ -19,8 +19,9 @@ export default async function handler(req, res) {
         res.status(401).json({ error: "Invalid username or password" });
       }
     } catch (error) {
-      console.error("Error authenticating user:", error);
       res.status(500).json({ error: "Failed to authenticate user" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

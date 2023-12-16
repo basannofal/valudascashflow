@@ -84,7 +84,7 @@ export default function Home() {
     const pdf = new jsPDF();
 
     // Ensure logoImage contains Base64 data
-    const imgData = logoImage.src;
+    const imgData = logoImage.src; // without add src imgData type is object
 
     // Check if imgData is a string
     if (typeof imgData === "string") {

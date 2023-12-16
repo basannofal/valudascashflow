@@ -15,40 +15,38 @@ export default async function handler(req, res) {
       res
         .status(500)
         .json({ error: 1, msg: "Member Cannot Fetch... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
   if (req.method == "DELETE") {
     try {
       const { id } = req.query;
-      console.log(id);
       // Query the database
       const q = "DELETE FROM cf_member_master WHERE id = ?";
-      console.log(q);
       const [rows] = await conn.query(q, [id]);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
       if (error.toString().includes("Cannot delete or update a parent row")) {
-        res
-          .status(500)
-          .json({
-            error: 1,
-            msg: "Member Not Deleted... Member Has Some Payments Data Or It May be Bail of Any Member",
-          });
+        res.status(500).json({
+          error: 1,
+          msg: "Member Not Deleted... Member Has Some Payments Data Or It May be Bail of Any Member",
+        });
       } else {
         res
           .status(500)
           .json({ error: 1, msg: "Member Cannot Delete... Check Connection" });
       }
+    } finally {
+      conn.releaseConnection();
     }
   }
 
   if (req.method == "PATCH") {
     let currentDate = new Date().toJSON().slice(0, 10);
-    console.log(req.body);
     const {
       fname,
       mname,
@@ -67,7 +65,7 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "UPDATE `cf_member_master` SET `fname`=?, `mname`=?, `lname`=?, `nickname`=?, `address`=?, `mobile_no`=?, `alt_mobile_no`=?, `email`=?, `aadhar_card`=?, `bank_ac`=?, `ifsc`=?, `update_by`=?,`update_date`= ?  WHERE id = ?";
-      console.log(q);
+
       const data = [
         fname,
         mname,
@@ -85,13 +83,14 @@ export default async function handler(req, res) {
         id,
       ];
       const [rows] = await conn.query(q, data);
-      console.log(data);
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
       res
         .status(500)
         .json({ error: 1, msg: "Member Cannot Update... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

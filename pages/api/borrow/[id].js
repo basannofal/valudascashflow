@@ -16,16 +16,16 @@ export default async function handler(req, res) {
         error: 1,
         msg: "Borrow Payment Cannot Fetch... Check Connection",
       });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
   if (req.method == "DELETE") {
     try {
       const { id } = req.query;
-      console.log(id);
       // Query the database
       const q = "DELETE FROM cf_borrow_payment WHERE id = ?";
-      console.log(q);
       const [rows] = await conn.query(q, [id]);
 
       // Process the data and send the response
@@ -42,6 +42,8 @@ export default async function handler(req, res) {
           msg: "Borrow Payment Cannot Delete... Check Connection",
         });
       }
+    } finally {
+      conn.releaseConnection();
     }
   }
 
@@ -60,7 +62,7 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "UPDATE `cf_borrow_payment` SET `amount`=?, `date`=?, `note`=?, `m_id`=?, `bail_m_id`=?, `bail_m_id2`=?, `given_by`=?, `given_user`=?  WHERE id = ?";
-      console.log(q);
+
       const data = [
         amount,
         date,
@@ -73,15 +75,16 @@ export default async function handler(req, res) {
         id,
       ];
       const [rows] = await conn.query(q, data);
-      console.log(data);
+
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
       res.status(500).json({
         error: 1,
         msg: "Borrow Payment Cannot Update... Check Connection",
       });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

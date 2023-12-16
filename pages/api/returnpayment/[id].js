@@ -12,42 +12,39 @@ export default async function handler(req, res) {
       const [rows] = await conn.query(q, [id]);
       res.status(200).json(rows);
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          error: 1,
-          msg: "Refund Payment Cannot Fetch... Check Connection",
-        });
+      res.status(500).json({
+        error: 1,
+        msg: "Refund Payment Cannot Fetch... Check Connection",
+      });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
   if (req.method == "DELETE") {
     try {
       const { id } = req.query;
-      console.log(id);
       // Query the database
       const q = "DELETE FROM cf_main_payment_return WHERE id = ?";
-      console.log(q);
+
       const [rows] = await conn.query(q, [id]);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
       if (error.toString().includes("Cannot delete or update a parent row")) {
-        res
-          .status(500)
-          .json({
-            error: 1,
-            msg: "Refund Payment Not Deleted... Already Use In Any Payment",
-          });
+        res.status(500).json({
+          error: 1,
+          msg: "Refund Payment Not Deleted... Already Use In Any Payment",
+        });
       } else {
-        res
-          .status(500)
-          .json({
-            error: 1,
-            msg: "Refund Payment Cannot Delete... Check Connection",
-          });
+        res.status(500).json({
+          error: 1,
+          msg: "Refund Payment Cannot Delete... Check Connection",
+        });
       }
+    } finally {
+      conn.releaseConnection();
     }
   }
 
@@ -68,7 +65,7 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "UPDATE `cf_main_payment_return` SET `amount`= ?, `return_by`= ?, `returned_user`= ?, `date`= ?, `withdrawer_name`= ?, `mobile_no`= ?, `note`= ?, `m_id`= ?, `c_id`= ?  WHERE id = ?";
-      console.log(q);
+
       const data = [
         amount,
         returnby,
@@ -82,16 +79,16 @@ export default async function handler(req, res) {
         id,
       ];
       const [rows] = await conn.query(q, data);
-      console.log(data);
+
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          error: 1,
-          msg: "Refund Payment Cannot Update... Check Connection",
-        });
+      res.status(500).json({
+        error: 1,
+        msg: "Refund Payment Cannot Update... Check Connection",
+      });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

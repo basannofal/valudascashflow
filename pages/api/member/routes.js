@@ -21,7 +21,6 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "INSERT INTO `cf_member_master`(`fname`, `mname`, `lname`, `nickname`, `address`, `mobile_no`, `alt_mobile_no`, `email`, `aadhar_card`, `bank_ac`, `ifsc`, `add_by`, `date`, `update_by`, `update_date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      console.log(q);
       const data = [
         fname,
         mname,
@@ -44,10 +43,12 @@ export default async function handler(req, res) {
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.log(error);
       res
         .status(500)
         .json({ error: 1, msg: "Member Cannot Add... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
@@ -55,16 +56,17 @@ export default async function handler(req, res) {
     try {
       // Query the database
       const q = "SELECT * FROM cf_member_master";
-      console.log(q);
+
       const [rows] = await conn.query(q);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
-      console.error("Error fetching users:", error);
       res
         .status(500)
         .json({ error: 1, msg: "Member Cannot Fetch... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }

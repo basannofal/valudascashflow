@@ -48,7 +48,7 @@ const AddBorrow = () => {
     // Save DAta 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let username = localStorage.getItem("user");
+        let username = localStorage.getItem("username");
         // Validate all fields
 
         if (isNaN(PaymentData.amount)) {

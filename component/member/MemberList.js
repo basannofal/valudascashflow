@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import SkeletonTable from "../skeleton/SkeletonTable";
 import Link from "next/link";
 import { useFilterValue } from "../Container";
-import Pagination from "../Pagination";
 import ReactDOM from "react-dom";
 import ToastifyAlert from "../CustomComponent/ToastifyAlert";
 import CustomConfirm from "../CustomComponent/CustomConfirm";
@@ -99,14 +98,13 @@ const MemberList = () => {
   return (
     <>
       {/* Display Data */}
-
-      <div class="bottom-data">
-        <div class="orders">
-          <div class="header">
-            <i class="bx bx-receipt"></i>
+      <div className="bottom-data">
+        <div className="orders">
+          <div className="header">
+            <i className="bx bx-receipt"></i>
             <h3>All Members</h3>
-            <i class="bx bx-filter"></i>
-            <i class="bx bx-search"></i>
+            <i className="bx bx-filter"></i>
+            <i className="bx bx-search"></i>
           </div>
           <table>
             <thead>
@@ -169,11 +167,31 @@ const MemberList = () => {
           </table>
           {/* pagination start */}
           <div className="pagination-container">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={numberOfPages}
-              onPageChange={handlePageChange}
-            />
+            <button
+              disabled={currentPage <= 0}
+              className="pagination-button"
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              &lt;
+            </button>
+            {pageIndex.map((page) => (
+              <button
+                key={page}
+                className={`pagination-button ${
+                  page - 1 === currentPage ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(page - 1)}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              disabled={currentPage >= numberOfPages - 1}
+              className="pagination-button"
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              &gt;
+            </button>
           </div>
           {/* pagination End */}
           <div id="CustomComponent"></div>
@@ -182,8 +200,6 @@ const MemberList = () => {
             <p className="text-red-600 mt-5">{handalationError}</p>
           )}
         </div>
-
-        {/* End Display Data */}
       </div>
     </>
   );

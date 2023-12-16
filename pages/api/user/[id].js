@@ -15,33 +15,33 @@ export default async function handler(req, res) {
       res
         .status(500)
         .json({ error: 1, msg: "User Cannot Fetch... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 
   if (req.method == "DELETE") {
     try {
       const { id } = req.query;
-      console.log(id);
       // Query the database
       const q = "DELETE FROM cf_auth_info WHERE id = ?";
-      console.log(q);
       const [rows] = await conn.query(q, [id]);
 
       // Process the data and send the response
       res.status(200).json(rows);
     } catch (error) {
       if (error.toString().includes("Cannot delete or update a parent row")) {
-        res
-          .status(500)
-          .json({
-            error: 1,
-            msg: "User Not Deleted... Already Use In Any Payment",
-          });
+        res.status(500).json({
+          error: 1,
+          msg: "User Not Deleted... Already Use In Any Payment",
+        });
       } else {
         res
           .status(500)
           .json({ error: 1, msg: "User Cannot Delete... Check Connection" });
       }
+    } finally {
+      conn.releaseConnection();
     }
   }
 
@@ -51,7 +51,6 @@ export default async function handler(req, res) {
       // Query the database
       const q =
         "UPDATE `cf_auth_info` SET `name`= ?, `number`= ?, `email`= ?, `username`= ?, `password`= ?, `is_admin`= ? WHERE id = ?";
-      console.log(q);
       const data = [name, number, email, username, password, isAdmin, id];
       const [rows] = await conn.query(q, data);
 
@@ -61,6 +60,8 @@ export default async function handler(req, res) {
       res
         .status(500)
         .json({ error: 1, msg: "User Cannot Update... Check Connection" });
+    } finally {
+      conn.releaseConnection();
     }
   }
 }
