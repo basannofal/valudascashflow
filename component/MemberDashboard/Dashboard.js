@@ -13,6 +13,7 @@ import { fetchAccountingDetailAsync } from "@/store/slices/Accounting";
 import Pagination from "../Pagination";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import logoImage from "../../public/images/sahara.jpeg";
 import { fetchCategoryAsync } from "@/store/slices/CategorySlice";
 
 const Dashboard = ({ memberId }) => {
@@ -334,71 +335,95 @@ const Dashboard = ({ memberId }) => {
     // Initialize jsPDF
     const pdf = new jsPDF();
 
-    // Add member name to the PDF
-    pdf.text(`Member Name: ${memberName}`, 10, 10);
+    // Ensure logoImage contains Base64 data
+    const imgData = logoImage.src;
 
-    // Add table header
-    const tableColumn = [
-      "Transaction ID",
-      "Payment Type",
-      "Category",
-      "Collected By",
-      "Collected User",
-      "Date",
-      "Credit",
-      "Debit",
-      "Net",
-    ];
+    // Check if imgData is a string
+    if (typeof imgData === "string") {
+      // Add image to the PDF
+      pdf.addImage(imgData, "JPEG", 10, 10, 40, 40);
 
-    const tableRows = filteredAccount.map((e) => {
-      const netPayment = calculateNetPaymentForReport(
-        e.table_name,
-        e.amount,
-        e.cat_name
-      );
-      return [
-        e.id,
-        e.table_name,
-        e.cat_name,
-        e.collected_by,
-        e.collected_user,
-        e.date,
-        e.type == 1 ? e.amount : "",
-        e.type != 1 ? e.amount : "",
-        netPayment,
+      // Set company information
+      pdf.setFontSize(16);
+      pdf.text("SAHARA EDUCATION AND WELFARE TRUST", 60, 20);
+      pdf.setFontSize(14);
+      pdf.text("At/Po-Majadar Ta-vadgam Di-Banaskantha Pin-385210", 60, 27);
+      pdf.text("REGD NO. F/6710 B.K.", 90, 34);
+
+      // Set current date and time
+      const currentDate = new Date().toLocaleDateString();
+      const currentTime = new Date().toLocaleTimeString();
+      pdf.setFontSize(12);
+      pdf.text(`Date: ${currentDate}   Time: ${currentTime}`, 80, 40);
+
+      // Add member name to the PDF
+      pdf.text(`Member Name: ${memberName}`, 15, 60);
+
+      // Add table header
+      const tableColumn = [
+        "Transaction ID",
+        "Payment Type",
+        "Category",
+        "Collected By",
+        "Collected User",
+        "Date",
+        "Credit",
+        "Debit",
+        "Net",
       ];
-    });
 
-    pdf.autoTable({
-      head: [tableColumn],
-      body: tableRows,
-      startY: 20,
-    });
+      const tableRows = filteredAccount.map((e) => {
+        const netPayment = calculateNetPaymentForReport(
+          e.table_name,
+          e.amount,
+          e.cat_name
+        );
+        return [
+          e.id,
+          e.table_name,
+          e.cat_name,
+          e.collected_by,
+          e.collected_user,
+          e.date,
+          e.type == 1 ? e.amount : "",
+          e.type != 1 ? e.amount : "",
+          netPayment,
+        ];
+      });
 
-    // Add total credit and total debit
-    pdf.text(
-      `Total Credit: ${totalCredit}`,
-      10,
-      pdf.autoTable.previous.finalY + 10,
-      { fontSize: 8 }
-    );
-    pdf.text(
-      `Total Debit: ${totalDebit}`,
-      10,
-      pdf.autoTable.previous.finalY + 20,
-      { fontSize: 8 }
-    );
+      pdf.autoTable({
+        head: [tableColumn],
+        body: tableRows,
+        startY: 70,
+      });
 
-    // Add net profit
-    pdf.text(
-      `Net Profit: ${NetProfit}`,
-      10,
-      pdf.autoTable.previous.finalY + 30,
-      { fontSize: 8 }
-    );
+      // Add total credit and total debit
+      pdf.text(
+        `Total Credit: ${totalCredit}`,
+        10,
+        pdf.autoTable.previous.finalY + 10,
+        { fontSize: 8 }
+      );
+      pdf.text(
+        `Total Debit: ${totalDebit}`,
+        10,
+        pdf.autoTable.previous.finalY + 20,
+        { fontSize: 8 }
+      );
 
-    // Save the PDF
-    pdf.save(`ledger_${memberId}_${new Date().toISOString()}.pdf`);
+      // Add net profit
+      pdf.text(
+        `Net Profit: ${NetProfit}`,
+        10,
+        pdf.autoTable.previous.finalY + 30,
+        { fontSize: 8 }
+      );
+
+      // Save the PDF
+      pdf.save(`ledger_${memberId}_${new Date().toISOString()}.pdf`);
+    } else {
+      console.error("Invalid image data");
+    }
   };
 
   // handle showing entry code
