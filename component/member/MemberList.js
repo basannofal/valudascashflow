@@ -158,7 +158,9 @@ const MemberList = () => {
                   {" "}
                   {/* Wrap the content in a div */}
                   {member.length === 0 ? (
-                    <SkeletonTable numRows={5} numColumns={6} color="#FF5555" />
+                    <div className="flex justify-center items-center">
+                      <b className="text-red-500 m-8">Member Not found</b>
+                    </div>
                   ) : (
                     <div className="flex justify-center items-center">
                       <b className="text-red-500 m-8">Member Not found</b>

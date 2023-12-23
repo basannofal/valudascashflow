@@ -80,6 +80,7 @@ const CategoriesList = () => {
 
         dispatch(fetchCategoryAsync());
         setValidationError("");
+        window.location.reload()
       } catch (err) {
         setValidationError(err);
       }
@@ -277,7 +278,9 @@ const CategoriesList = () => {
                   {" "}
                   {/* Wrap the content in a div */}
                   {categories.length === 0 ? (
-                    <SkeletonTable numRows={4} numColumns={2} color="#FF5555" />
+                    <div className="flex justify-center items-center">
+                      <b className="text-red-500 m-8">Categories Not found</b>
+                    </div>
                   ) : (
                     <div className="flex justify-center items-center">
                       <b className="text-red-500 m-8">Categories Not found</b>
