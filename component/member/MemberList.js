@@ -124,7 +124,10 @@ const MemberList = () => {
                     <tr key={e.id}>
                       <Link href={`/memberdashboard/${e.id}`}>
                         <td>
-                          <InitialsAvatar fullName={e.fname} />
+                          <img
+                            src="/images/user.png"
+                            alt="Profile"
+                          />
                           <p>{`${e.fname} ${e.mname} ${e.lname}`}</p>
                         </td>
                       </Link>
