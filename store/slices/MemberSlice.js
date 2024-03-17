@@ -13,14 +13,12 @@ const memberSlice = createSlice({
     reducers: {
         addMember: (state, action) => {
             state.member.push(action.payload);
-            console.log(action.payload);
         },
         editMember: (state, action) => {
             // Implement editing logic
             const editedIndex = state.member.findIndex(member => member.id === action.payload.id);
             if (editedIndex !== -1) {
                 state.member[editedIndex] = action.payload;
-                console.log(action.payload);
             }
         },
         deleteMember: (state, action) => {
@@ -43,7 +41,6 @@ export const fetchMemberAsync = () => async (dispatch) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/member/routes`);
         const memberData = response.data;
-        console.log(memberData);
         dispatch(fetchMember(memberData)); // Dispatch the action with the fetched data
     } catch (error) {
         dispatch(setError({ msg: "Error fetching members", type: "error" }));
@@ -56,7 +53,6 @@ export const fetchPerMemberAsync = (id) => async (dispatch) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/member/${id}`);
         const memberData = response.data[0];
-        console.log(memberData);
         dispatch(fetchPerMember(memberData)); // Dispatch the action with the fetched data
         return memberData;
     } catch (error) {

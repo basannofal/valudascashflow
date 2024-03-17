@@ -79,7 +79,6 @@ export const fetchPaymentAsync = () => async (dispatch) => {
 // Async action creator for fetch data
 export const fetchPerMemberPaymentAsync = (mid) => async (dispatch) => {
   try {
-    console.log("******CALLED**********");
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/payment/routes`
     );

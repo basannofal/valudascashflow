@@ -94,16 +94,13 @@ const UpdateBorrow = ({ id }) => {
        const handleChangeAutoComplete = (event) => {
            const value = event.target.value;
            setInputValue(value);
-           console.log(sortedNames);
            const suggestions = sortedNames.filter(m =>{
             const fullName = `${m.fname} ${m.mname} ${m.lname}`.toLowerCase();
             return fullName.includes(value.toLowerCase()) || m.id == value;
            }
            );
-           console.log(suggestions);
            setSuggestedNames(suggestions);
-           setPaymentData(prevData => ({ ...prevData, mid: '' }));  // Clear mid when typing after selecting a name
-           console.log(PaymentData);
+           setPaymentData(prevData => ({ ...prevData, mid: '' }));
    
        };
    
@@ -111,7 +108,6 @@ const UpdateBorrow = ({ id }) => {
            setInputValue(name);
            setPaymentData(prevData => ({ ...prevData, mid: value }));
            setSuggestedNames([]);
-           console.log(PaymentData);
        };
    
    
@@ -145,20 +141,17 @@ const UpdateBorrow = ({ id }) => {
 
     // Fetch Data
     useEffect(() => {
-        console.log(perborrow);
         dispatch(fetchMemberAsync())
         dispatch(fetchPerBorrowAsync(id)).then(() => {
             setPaymentData({  amount: perborrow.amount, collectedby: perborrow.given_by, mid: perborrow.m_id,bailmid: perborrow.bail_m_id})
 
             dispatch(fetchPerMemberAsync(perborrow.m_id)).then((data) => {
-                console.log(data);
                 setInputValue(data.fname + " " + data.mname + " " + data.lname)
             }).catch((err) => {
                 console.log(err);
             })
 
             dispatch(fetchPerMemberAsync(perborrow.bail_m_id)).then((data) => {
-                console.log(data);
                 setBailInputValue(data.fname + " " + data.mname + " " + data.lname)
             }).catch((err) => {
                 console.log(err);

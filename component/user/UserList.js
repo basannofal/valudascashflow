@@ -177,7 +177,6 @@ const UserList = () => {
     setEditingUserId(id);
     user.map((e, i) => {
       if (id == e.id) {
-        console.log(e);
         setUserData({
           name: e.name,
           number: e.number,
@@ -223,7 +222,6 @@ const UserList = () => {
           m.username.toLowerCase() === userData.username.trim().toLowerCase()
       );
       setisFakeUserName(userNameExists);
-      console.log(userNameExists);
     }
   }, [userData.username]);
 
@@ -231,7 +229,6 @@ const UserList = () => {
   useEffect(() => {
     // Get Data Using Redux
     dispatch(fetchUserAsync());
-    console.log(user);
   }, []);
 
   return (

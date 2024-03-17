@@ -2,18 +2,15 @@ import mysql from "mysql2";
 
 const pool = mysql.createPool({
   host: "localhost",
-  // port: 'YOUR_MYSQL_PORT', // Typically 3306
-  // user: "root",
-  // password: "",
-  // database: "cash_flow",
-  // waitForConnections: true,
-  // max_connections: 150, // Set the maximum number of connections
+  user: "root",
+  password: "",
+  database: "cash_flow",
 
-  host: "aufcart.com",
-  // port: '3306', // Typically 3306
-  user: "valudaaa_cash_flow",
-  password: "iXR%suDt).BI",
-  database: "valudaaa_cash_flow",
+  // host: process.env.NEXT_PUBLIC_DB_HOST,
+  // port: process.env.NEXT_PUBLIC_DB_PORT, // Typically 3306
+  // user: process.env.NEXT_PUBLIC_DB_USER,
+  // password: process.env.NEXT_PUBLIC_DB_PASSWORD,
+  // database: process.env.NEXT_PUBLIC_DB_DATABASE,
 });
 const conn = pool.promise();
 

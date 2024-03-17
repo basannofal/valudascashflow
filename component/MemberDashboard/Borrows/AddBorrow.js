@@ -30,7 +30,6 @@ const AddBorrow = ({ mid }) => {
     username = localStorage.getItem("username");
   }
 
-
   const [PaymentData, setPaymentData] = useState({
     amount: "",
     collectedby: username,
@@ -46,6 +45,7 @@ const AddBorrow = ({ mid }) => {
     const { name, value } = e.target;
     setPaymentData({ ...PaymentData, [name]: value });
   };
+  // handle change input value
 
   // Form Validataion
   useEffect(() => {

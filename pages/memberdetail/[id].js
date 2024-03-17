@@ -9,7 +9,6 @@ import Head from "next/head";
 const Index = () => {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
   return (
     <MemberContainer id={id}>
       {/* Heading */}

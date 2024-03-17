@@ -191,7 +191,6 @@ const UpdateMember = ({ id }) => {
         m.lname.toLowerCase() === memberData.lname.trim().toLowerCase()
     );
     setisFakeName(memberExists);
-    console.log(memberExists);
   }, [memberData.fname, memberData.lname, memberData.mname]);
 
   // check for unique Number
@@ -203,7 +202,6 @@ const UpdateMember = ({ id }) => {
       (m) => m.id != member.id && m.mobile_no === memberData.mobileNo.trim()
     );
     setisFakeNumber(memberExists);
-    console.log(memberExists);
   }, [memberData.mobileNo]);
 
   // Fetch Data

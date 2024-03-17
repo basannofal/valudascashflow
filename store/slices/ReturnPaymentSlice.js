@@ -15,14 +15,12 @@ const ReturnPaymentSlice = createSlice({
     reducers: {
         addReturnPayment: (state, action) => {
             state.returnpayment.push(action.payload);
-            console.log(action.payload);
         },
         editReturnPayment: (state, action) => {
             // Implement editing logic here
             const editedreturnPaymentIndex = state.returnpayment.findIndex(item => item.id === action.payload.id);
             if (editedreturnPaymentIndex !== -1) {
                 state.returnpayment[editedreturnPaymentIndex] = action.payload;
-                console.log(action.payload);
             }
         },
         deleteReturnPayment: (state, action) => {
@@ -52,7 +50,6 @@ export const fetchReturnPaymentAsync = () => async (dispatch) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/returnpayment/routes`);
         const returnpaymentData = response.data;
-        console.log(response.data);
         await dispatch(fetchReturnPayment(returnpaymentData));
         return returnpaymentData
     } catch (error) {
@@ -66,7 +63,6 @@ export const fetchPerMemberReturnPaymentAsync = (id) => async (dispatch) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/returnpayment/${id}`);
         const returnpaymentData = response.data;
-        console.log(response.data[0]);
         await dispatch(fetchPerMemberReturnPayment(returnpaymentData));
         return returnpaymentData
     } catch (error) {
@@ -118,8 +114,7 @@ export const deleteReturnPaymentAsync = (id) => async (dispatch) => {
 export const totalreturnpaymentAsync = (mid) => async (dispatch, getState) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/returnpayment/${mid}`);
-        const perReturnPayments = response.data
-        console.log(response.data);
+        const perReturnPayments = response.data;
         const totalAmount = perReturnPayments.reduce((sum, payment) => sum + payment.amount, 0);
         dispatch(totalreturnpayments(totalAmount));
         return totalAmount;
@@ -134,11 +129,9 @@ export const totalreturnpaymentAsync = (mid) => async (dispatch, getState) => {
 // Async action creator for fetch data
 export const fetchPerReturnedPaymentAsync = (mid) => async (dispatch) => {
     try {
-        console.log("******CALLED**********");
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/returnpayment/routes`);
         const paymentData = response.data;
         const filteredPaymentData = paymentData.filter(item => item.id  == mid);
-        console.log(filteredPaymentData[0]);
 
         await dispatch(fetchPerReturnedPayment(filteredPaymentData[0]));
         return filteredPaymentData[0]

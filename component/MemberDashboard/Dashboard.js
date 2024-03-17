@@ -267,7 +267,6 @@ const Dashboard = ({ memberId }) => {
   };
 
   const handleDownloadExcelButtonClick = () => {
-    console.log(filteredAccount);
     let creditTotal = 0;
     let debitTotal = 0;
 
@@ -516,8 +515,6 @@ const Dashboard = ({ memberId }) => {
           </span>
         </li>
 
-        <div></div>
-
         {/* Funds */}
         <li>
           <i className="bx bx-filter" onClick={handleFilterIconClickFunds}></i>
@@ -670,7 +667,7 @@ const Dashboard = ({ memberId }) => {
                     <td>{e.cat_name}</td>
                     <td>{e.collected_by}</td>
                     <td>{e.collected_user}</td>
-                    <td>{e.date}</td>
+                    <td>{new Date(e.date).toLocaleDateString("en-GB")}</td>
 
                     {e.type == 1 ? (
                       <>

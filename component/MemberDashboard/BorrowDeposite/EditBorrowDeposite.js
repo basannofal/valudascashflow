@@ -116,7 +116,6 @@ const EditBorrowDeposite = ({ mid, id }) => {
         const getdata = async () => {
             dispatch(fetchPerMemberAsync(mid));
             dispatch(fetchPerdepositedPaymentAsync(id)).then((data) => {
-                console.log(data);
                 const parsedDate = new Date(data.date);
                 setPaymentData({
                     amount: data.amount,

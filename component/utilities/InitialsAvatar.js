@@ -34,7 +34,6 @@ const letterToColor = {
 const InitialsAvatar = ({ fullName }) => {
     const names = fullName.split(" ");
     return names.map((name) => {
-        console.log(fullName);
         const initial = "A";
         const backgroundColor = letterToColor[initial] || "gray"; // Default to gray if letter doesn't have a color
         return (

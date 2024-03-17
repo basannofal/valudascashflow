@@ -91,15 +91,13 @@ const AddPayment = () => {
     const handleChangeAutoComplete = (event) => {
         const value = event.target.value;
         setInputValue(value);
-        console.log(sortedNames);
         const suggestions = sortedNames.filter(m =>{
             const fullName = `${m.fname} ${m.mname} ${m.lname}`.toLowerCase();
             return fullName.includes(value.toLowerCase()) || m.id == value;
          }
         );
         setSuggestedNames(suggestions);
-        setPaymentData(prevData => ({ ...prevData, mid: '' }));  // Clear mid when typing after selecting a name
-        console.log(PaymentData);
+        setPaymentData(prevData => ({ ...prevData, mid: '' }));
 
     };
 
@@ -107,7 +105,6 @@ const AddPayment = () => {
         setInputValue(name);
         setPaymentData(prevData => ({ ...prevData, mid: value }));
         setSuggestedNames([]);
-        console.log(PaymentData);
     };
 
 

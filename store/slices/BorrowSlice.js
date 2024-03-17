@@ -73,7 +73,6 @@ export const fetchPerBorrowAsync = (id) => async (dispatch) => {
 // Async action creator for fetch data
 export const fetchPerMemberBorrowAsync = (mid) => async (dispatch) => {
     try {
-        console.log("******CALLED**********");
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/borrow/routes`);
         const paymentData = response.data;
         const filteredPaymentData = paymentData.filter(item => item.m_id  == mid);

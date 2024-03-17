@@ -118,7 +118,6 @@ const UpdatePayment = ({ id, mid }) => {
             setPaymentData({ amount: data.amount, collectedby: data.collected_by, date: parsedDate.toISOString().slice(0, 10), note: data.note, mid: data.m_id, cid: data.c_id })
 
             dispatch(fetchPerMemberAsync(data.m_id)).then((data) => {
-                console.log(data);
                 setInputValue(data.fname + " " + data.mname + " " + data.lname)
                 setIsDataFetch(true)
             }).catch((err) => {

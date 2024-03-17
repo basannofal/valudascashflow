@@ -177,11 +177,9 @@ const UpdateBorrow = ({ mid, id, bid }) => {
 
   // Fetch Data
   useEffect(() => {
-    console.log(perborrow);
     dispatch(fetchMemberAsync());
     dispatch(fetchPerMemberAsync(bid))
       .then((data) => {
-        console.log(data);
         setBailInputValue1(data.fname + " " + data.mname + " " + data.lname);
         setBailInputValue2(data.fname + " " + data.mname + " " + data.lname);
       })
@@ -198,7 +196,6 @@ const UpdateBorrow = ({ mid, id, bid }) => {
       });
     dispatch(fetchPerBorrowAsync(id))
       .then((data) => {
-        console.log(data);
         const parsedDate = new Date(data.date);
         setPaymentData({
           amount: data.amount,

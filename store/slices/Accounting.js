@@ -22,7 +22,6 @@ export default AccountingSlice.reducer;
 // Async action creator for fetch PER payment data
 export const fetchAccountingDetailAsync = (id) => async (dispatch) => {
   try {
-    console.log("READ");
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/accounting/${id}`
     );

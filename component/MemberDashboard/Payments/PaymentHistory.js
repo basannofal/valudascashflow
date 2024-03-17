@@ -124,7 +124,6 @@ const PaymentHistory = ({ mid }) => {
               <tbody>
                 {rows.map((e, i) => {
                   const parsedDate = e.date;
-                  console.log(e);
                   return (
                     <tr key={e.id}>
                       <td>{e.id}</td>

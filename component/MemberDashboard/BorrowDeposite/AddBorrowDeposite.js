@@ -97,8 +97,6 @@ const AddBorrowDeposite = ({ mid }) => {
       return;
     }
 
-    console.log(parseInt(PaymentData.amount) + totalborrowdeposite);
-    console.log(totalborrow);
     if (parseInt(PaymentData.amount) + totalborrowdeposite > totalborrow) {
       setValidationError(
         `You Have Left Only ${totalborrow - totalborrowdeposite} Rs`
@@ -162,7 +160,6 @@ const AddBorrowDeposite = ({ mid }) => {
     dispatch(totalborrowdepositeAsync(mid));
     dispatch(totalborrowpaymentAsync(mid));
   }, []);
-
   return (
     <>
       {/* Add Data */}
@@ -183,7 +180,7 @@ const AddBorrowDeposite = ({ mid }) => {
                 <input
                   type="text"
                   className="cursor-not-allowed"
-                  value={`${permember.fname} ${permember.mname} ${permember.lname}`}
+                  value={`${permember?.fname} ${permember?.mname} ${permember?.lname}`}
                   disabled
                 />
               </div>

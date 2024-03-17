@@ -15,14 +15,12 @@ const memberBorrowDepositeSlice = createSlice({
     reducers: {
         addBorrowDeposite: (state, action) => {
             state.borrowdeposite.push(action.payload);
-            console.log(action.payload);
         },
         editBorrowDeposite: (state, action) => {
             // Implement editing logic
             const editedIndex = state.borrowdeposite.findIndex(borrowdeposite => borrowdeposite.id === action.payload.id);
             if (editedIndex !== -1) {
                 state.borrowdeposite[editedIndex] = action.payload;
-                console.log(action.payload);
             }
         },
         deleteBorrowDeposite: (state, action) => {
@@ -51,7 +49,6 @@ export const fetchBorrowDipositeAsync = () => async (dispatch) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/borrowdeposite/routes`);
         const borrowdepositeData = response.data;
-        console.log(borrowdepositeData);
         dispatch(fetchBorrowDiposite(borrowdepositeData)); // Dispatch the action with the fetched data
     } catch (error) {
         dispatch(setError({ msg: "Error fetching Borrow Deposite", type: "error" }));
@@ -62,10 +59,8 @@ export const fetchBorrowDipositeAsync = () => async (dispatch) => {
 // Async action creator for fetch PER borrowdeposite data
 export const fetchPerMemberBorrowDepositeAsync = (id) => async (dispatch) => {
     try {
-        console.log("This is id "+id);
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/borrowdeposite/${id}`);
         const borrowdepositeData = response.data;
-        console.log(borrowdepositeData);
         dispatch(fetchPerMemberBorrowDeposite(borrowdepositeData)); // Dispatch the action with the fetched data
         return borrowdepositeData;
     } catch (error) {
@@ -122,8 +117,7 @@ export const deleteBorrowDepositeAsync = (id) => async (dispatch) => {
 export const totalborrowdepositeAsync = (mid) => async (dispatch, getState) => {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/borrowdeposite/${mid}`);
-        const perDepositePayments = response.data
-        console.log(response.data);
+        const perDepositePayments = response.data;
         const totalAmount = perDepositePayments.reduce((sum, payment) => sum + payment.amount, 0);
         dispatch(totalborrowdeposite(totalAmount));
         return totalAmount;
@@ -138,11 +132,9 @@ export const totalborrowdepositeAsync = (mid) => async (dispatch, getState) => {
 // Async action creator for fetch data
 export const fetchPerdepositedPaymentAsync = (id) => async (dispatch) => {
     try {
-        console.log("******CALLED**********");
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/borrowdeposite/routes`);
         const paymentData = response.data;
         const filteredPaymentData = paymentData.filter(item => item.id  == id);
-        console.log(filteredPaymentData[0]);
 
         await dispatch(fetchPerdepositedPayment(filteredPaymentData[0]));
         return filteredPaymentData[0]

@@ -123,7 +123,6 @@ const AddMember = () => {
 
     // Process form data here
     setValidationError("");
-    console.log(memberData);
 
     if (memberExists) {
       setValidationError(
@@ -212,7 +211,6 @@ const AddMember = () => {
         m.lname.toLowerCase() === memberData.lname.trim().toLowerCase()
     );
     setisFakeName(memberExists);
-    console.log(memberExists);
   }, [memberData.fname, memberData.lname, memberData.mname]);
 
   // check for unique Number
@@ -224,7 +222,6 @@ const AddMember = () => {
       (m) => m.mobile_no === memberData.mobileNo.trim()
     );
     setisFakeNumber(memberExists);
-    console.log(memberExists);
   }, [memberData.mobileNo]);
 
   useEffect(() => {
