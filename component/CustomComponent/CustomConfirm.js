@@ -47,8 +47,8 @@ const CustomConfirm = ({ title, body, button, onConfirm, onClose }) => {
               </form>
 
               {captchaError && (
-                <div class="mt-2 p-4 mb-2 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                  <span class="font-medium">Incorrect Captcha !</span>
+                <div className="mt-2 p-4 mb-2 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                  <span className="font-medium">Incorrect Captcha !</span>
                 </div>
               )}
               <div className={styles.modal_btn_group}>

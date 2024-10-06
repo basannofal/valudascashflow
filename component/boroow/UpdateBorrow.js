@@ -114,8 +114,7 @@ const UpdateBorrow = ({ id }) => {
            console.log(PaymentData);
        };
    
-   
-   
+
        // Auto Complete Field For Bail 
    
        const [bailInputValue, setBailInputValue] = useState('');
@@ -142,7 +141,6 @@ const UpdateBorrow = ({ id }) => {
    
    
 
-
     // Fetch Data
     useEffect(() => {
         console.log(perborrow);
@@ -157,12 +155,14 @@ const UpdateBorrow = ({ id }) => {
                 console.log(err);
             })
 
+            console.log("bail input value", bailInputValue);
             dispatch(fetchPerMemberAsync(perborrow.bail_m_id)).then((data) => {
-                console.log(data);
+                console.log("bail data",data);
                 setBailInputValue(data.fname + " " + data.mname + " " + data.lname)
             }).catch((err) => {
                 console.log(err);
             })
+
             setIsDataFetch(true)
             
         }).catch((err) => {

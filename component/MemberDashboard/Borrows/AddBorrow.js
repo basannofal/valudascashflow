@@ -65,10 +65,10 @@ const AddBorrow = ({ mid }) => {
     if (isNaN(PaymentData.amount)) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Accept Only Digit
+          <span className="font-medium">Error !</span> Amount Accept Only Digit
           Number...
         </div>
       );
@@ -78,10 +78,10 @@ const AddBorrow = ({ mid }) => {
     if (PaymentData.amount <= 0) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Should be Grether Than
+          <span className="font-medium">Error !</span> Amount Should be Grether Than
           0...
         </div>
       );
@@ -94,10 +94,10 @@ const AddBorrow = ({ mid }) => {
     ) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Member Can Not Be Own Bail...
+          <span className="font-medium">Error !</span> Member Can Not Be Own Bail...
         </div>
       );
       return;
@@ -118,10 +118,10 @@ const AddBorrow = ({ mid }) => {
           onConfirm={() => {
             setValidationError(
               <div
-                class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+                className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
                 role="alert"
               >
-                <span class="font-medium">Success !</span> Borrow Payment Added
+                <span className="font-medium">Success !</span> Borrow Payment Added
                 Successfully.
               </div>
             );

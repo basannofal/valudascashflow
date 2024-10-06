@@ -40,7 +40,7 @@ const BorrowHistory = ({ mid }) => {
   const startIndex = currentPage * itemPerPage;
   const endIndex = startIndex + itemPerPage;
   const rows = filteredMembers.slice(startIndex, endIndex);
-
+  console.log("rows detailsss," ,rows);
   const numberOfPages = Math.ceil(filteredMembers.length / itemPerPage);
   const pageIndex = Array.from({ length: numberOfPages }, (_, idx) => idx + 1);
   const handlePageChange = (pageNumber) => {
@@ -97,13 +97,13 @@ const BorrowHistory = ({ mid }) => {
     <>
       {/* Display Data */}
 
-      <div class="bottom-data">
-        <div class="orders">
-          <div class="header">
-            <i class="bx bx-receipt"></i>
+      <div className="bottom-data">
+        <div className="orders">
+          <div className="header">
+            <i className="bx bx-receipt"></i>
             <h3>Borrow Payment History</h3>
-            <i class="bx bx-filter"></i>
-            <i class="bx bx-search"></i>
+            <i className="bx bx-filter"></i>
+            <i className="bx bx-search"></i>
           </div>
           <table>
             <thead>
@@ -131,8 +131,10 @@ const BorrowHistory = ({ mid }) => {
                       <td>{e.given_by} </td>
                       <td>{`${e.bail_fname} ${e.bail_mname} ${e.bail_lname}`}</td>
                       <td>
+
+                        
                         <Link
-                          href={`/memberdashboard/borrows/editborrow?mid=${mid}&id=${e.id}&bid=${e.bail_m_id}`}
+                          href={`/memberdashboard/borrows/editborrow?mid=${mid}&id=${e.id}&bid=${e.bail_m_id}&bid2=${e.bail_m_id2}`}
                         >
                           <BiMessageSquareEdit className="bx" />
                         </Link>
@@ -150,7 +152,7 @@ const BorrowHistory = ({ mid }) => {
                 })}
               </tbody>
             ) : borrow.length == 0 ? (
-              <td colSpan="7" style={{ paddingTop: "1em" }}>
+              <tbody><tr><td colSpan="7" style={{ paddingTop: "1em" }}>
                 <div>
                   {" "}
                   {/* Wrap the content in a div */}
@@ -160,7 +162,7 @@ const BorrowHistory = ({ mid }) => {
                     </b>
                   </div>
                 </div>
-              </td>
+              </td></tr></tbody>
             ) : (
               <SkeletonTable numRows={4} numColumns={2} color="#FF5555" />
             )}

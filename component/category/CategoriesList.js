@@ -64,10 +64,10 @@ const CategoriesList = () => {
     if (categoryexist) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Category Already Exist...
+          <span className="font-medium">Error !</span> Category Already Exist...
         </div>
       );
       return;
@@ -91,10 +91,10 @@ const CategoriesList = () => {
 
         setValidationError(
           <div
-            class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+            className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
             role="alert"
           >
-            <span class="font-medium">Success !</span> Category Added
+            <span className="font-medium">Success !</span> Category Added
             Successfully.
           </div>
         );
@@ -218,13 +218,13 @@ const CategoriesList = () => {
 
   return (
     <>
-      <div class="bottom-data">
-        <div class="orders">
-          <div class="header">
-            <i class="bx bx-receipt"></i>
+      <div className="bottom-data">
+        <div className="orders">
+          <div className="header">
+            <i className="bx bx-receipt"></i>
             <h3>All Categories</h3>
-            <i class="bx bx-filter"></i>
-            <i class="bx bx-search"></i>
+            <i className="bx bx-filter"></i>
+            <i className="bx bx-search"></i>
           </div>
           <table>
             <thead>
@@ -259,7 +259,7 @@ const CategoriesList = () => {
                           <BiMessageSquareEdit className="bx" />
                         </td>
                       )}
-                      {/* <td onClick={() => { handleEdit(e.id) }}><BiMessageSquareEdit className='bx' /></td> */}
+                     
 
                       <td
                         onClick={() => {
@@ -273,9 +273,10 @@ const CategoriesList = () => {
                 })}
               </tbody>
             ) : (
+              <tbody><tr>
               <td colSpan="4" style={{ paddingTop: "1em" }}>
                 <div>
-                  {" "}
+                  {/* {" "} */}
                   {/* Wrap the content in a div */}
                   {categories.length === 0 ? (
                     <div className="flex justify-center items-center">
@@ -287,7 +288,7 @@ const CategoriesList = () => {
                     </div>
                   )}
                 </div>
-              </td>
+              </td></tr></tbody>
             )}
           </table>
 
@@ -307,11 +308,11 @@ const CategoriesList = () => {
         </div>
 
         {/* Add Category  */}
-        <div class="reminders">
-          <div class="header">
-            <i class="bx bxs-category"></i>
+        <div className="reminders">
+          <div className="header">
+            <i className="bx bxs-category"></i>
             <h3>Categories</h3>
-            <i class="bx bx-plus" onClick={handleChangeMode}></i>
+            <i className="bx bx-plus" onClick={handleChangeMode}></i>
           </div>
 
           <section className={styles.container}>

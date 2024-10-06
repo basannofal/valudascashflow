@@ -13,7 +13,9 @@ import ReactDOM from "react-dom";
 import ToastifyAlert from "@/component/CustomComponent/ToastifyAlert";
 import SkeletonForm from "@/component/skeleton/SkeletonForm";
 
-const UpdateBorrow = ({ mid, id, bid }) => {
+const UpdateBorrow = ({ mid, id, bid ,bid2}) => {
+
+  console.log("bid 2 ",bid2)
   const dispatch = useDispatch();
   const member = useSelector((state) => state.member.member);
   const perborrow = useSelector((state) => state.borrow.perborrow);
@@ -60,10 +62,10 @@ const UpdateBorrow = ({ mid, id, bid }) => {
     if (isNaN(PaymentData.amount)) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Accept Only Digit
+          <span className="font-medium">Error !</span> Amount Accept Only Digit
           Number...
         </div>
       );
@@ -73,10 +75,10 @@ const UpdateBorrow = ({ mid, id, bid }) => {
     if (PaymentData.amount <= 0) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Should be Grether Than
+          <span className="font-medium">Error !</span> Amount Should be Grether Than
           0...
         </div>
       );
@@ -89,10 +91,10 @@ const UpdateBorrow = ({ mid, id, bid }) => {
     ) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Member Can Not Be Own Bail...
+          <span className="font-medium">Error !</span> Member Can Not Be Own Bail...
         </div>
       );
       return;
@@ -110,10 +112,10 @@ const UpdateBorrow = ({ mid, id, bid }) => {
       );
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+          className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
           role="alert"
         >
-          <span class="font-medium">Success !</span> Borrow Payment Updated
+          <span className="font-medium">Success !</span> Borrow Payment Updated
           Successfully.
         </div>
       );
@@ -183,14 +185,14 @@ const UpdateBorrow = ({ mid, id, bid }) => {
       .then((data) => {
         console.log(data);
         setBailInputValue1(data.fname + " " + data.mname + " " + data.lname);
-        setBailInputValue2(data.fname + " " + data.mname + " " + data.lname);
+        
       })
       .catch((err) => {
         console.log(err);
       });
-    dispatch(fetchPerMemberAsync(mid))
+    dispatch(fetchPerMemberAsync(bid2))
       .then((data) => {
-        setBailInputValue1(data.fname + " " + data.mname + " " + data.lname);
+        console.log(data);
         setBailInputValue2(data.fname + " " + data.mname + " " + data.lname);
       })
       .catch((err) => {

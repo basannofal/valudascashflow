@@ -100,10 +100,10 @@ const AllBorrowDeposite = ({ mid }) => {
     <>
       {/* Display Data */}
 
-      <div class="bottom-data">
-        <div class="orders">
-          <div class="header">
-            <i class="bx bx-receipt"></i>
+      <div className="bottom-data">
+        <div className="orders">
+          <div className="header">
+            <i className="bx bx-receipt"></i>
             <h3>Borrow Deposite Payment</h3>
             <h1>
               Deposited = {totalborrowdeposite}{" "}
@@ -114,8 +114,8 @@ const AllBorrowDeposite = ({ mid }) => {
                 {totalborrow - totalborrowdeposite}
               </span>{" "}
             </h1>
-            {/* <i class='bx bx-filter'></i>
-                        <i class='bx bx-search'></i> */}
+            {/* <i className='bx bx-filter'></i>
+                        <i className='bx bx-search'></i> */}
           </div>
           <table>
             <thead>
@@ -162,7 +162,7 @@ const AllBorrowDeposite = ({ mid }) => {
                 })}
               </tbody>
             ) : borrowdeposite.length == 0 ? (
-              <td colSpan="7" style={{ paddingTop: "1em" }}>
+              <tbody><tr><td colSpan="7" style={{ paddingTop: "1em" }}>
                 <div>
                   {" "}
                   {/* Wrap the content in a div */}
@@ -173,6 +173,7 @@ const AllBorrowDeposite = ({ mid }) => {
                   </div>
                 </div>
               </td>
+              </tr></tbody>
             ) : (
               <SkeletonTable numRows={4} numColumns={2} color="#FF5555" />
             )}

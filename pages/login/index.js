@@ -34,13 +34,14 @@ const Index = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    
     const data = {
       username: loginData.username,
       password: loginData.password,
     };
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/login`;
-
+    console.log("url=", url)
     axios
       .post(url, data)
       .then(function (response) {

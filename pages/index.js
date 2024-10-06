@@ -15,6 +15,7 @@ export default function Home() {
   const router = useRouter();
   const [loading, setLoading] = useState("");
 
+
   useEffect(() => {
     let username = localStorage.getItem("username");
     if (!username) {
@@ -22,7 +23,9 @@ export default function Home() {
     }
   }, []);
 
+
   const dispatch = useDispatch();
+
 
   // Fetching data
   useEffect(() => {
@@ -39,6 +42,7 @@ export default function Home() {
     fetchData();
   }, [dispatch]);
 
+  
   // get total funds
   const totalfunds = useSelector((state) => state.payment.payment);
 
