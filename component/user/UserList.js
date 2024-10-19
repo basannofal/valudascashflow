@@ -79,10 +79,10 @@ const UserList = () => {
     if (userexist) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Username Already Exist...
+          <span className="font-medium">Error !</span> Username Already Exist...
         </div>
       );
       return;
@@ -93,10 +93,10 @@ const UserList = () => {
         dispatch(editUserAsync(editingUserId, userData));
         setValidationError(
           <div
-            class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+            className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
             role="alert"
           >
-            <span class="font-medium">Success !</span> User Updated
+            <span className="font-medium">Success !</span> User Updated
             Successfully.
           </div>
         );
@@ -110,10 +110,10 @@ const UserList = () => {
         dispatch(addUserAsync(userData));
         setValidationError(
           <div
-            class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+            className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
             role="alert"
           >
-            <span class="font-medium">Success !</span> User Added Successfully.
+            <span className="font-medium">Success !</span> User Added Successfully.
           </div>
         );
       } catch (error) {
@@ -236,13 +236,13 @@ const UserList = () => {
 
   return (
     <>
-      <div class="bottom-data">
-        <div class="orders">
-          <div class="header">
-            <i class="bx bx-receipt"></i>
+      <div className="bottom-data">
+        <div className="orders">
+          <div className="header">
+            <i className="bx bx-receipt"></i>
             <h3>All User</h3>
-            <i class="bx bx-filter"></i>
-            <i class="bx bx-search"></i>
+            <i className="bx bx-filter"></i>
+            <i className="bx bx-search"></i>
           </div>
           <table>
             <thead>
@@ -290,7 +290,7 @@ const UserList = () => {
                 })}
               </tbody>
             ) : (
-              <td colSpan="4" style={{ paddingTop: "1em" }}>
+              <tbody><tr><td colSpan="4" style={{ paddingTop: "1em" }}>
                 <div>
                   {" "}
                   {/* Wrap the content in a div */}
@@ -302,7 +302,7 @@ const UserList = () => {
                     </div>
                   )}
                 </div>
-              </td>
+              </td></tr></tbody>
             )}
           </table>
           {/* pagination start */}
@@ -317,11 +317,11 @@ const UserList = () => {
         </div>
 
         {/* Add Category  */}
-        <div class="reminders">
-          <div class="header">
-            <i class="bx bxs-user"></i>
+        <div className="reminders">
+          <div className="header">
+            <i className="bx bxs-user"></i>
             <h3>User</h3>
-            <i class="bx bx-plus" onClick={handleChangeMode}></i>
+            <i className="bx bx-plus" onClick={handleChangeMode}></i>
           </div>
 
           <section className={styles.container}>

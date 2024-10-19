@@ -74,10 +74,10 @@ const AddBorrowDeposite = ({ mid }) => {
     if (isNaN(PaymentData.amount)) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Accept Only Digit
+          <span className="font-medium">Error !</span> Amount Accept Only Digit
           Number...
         </div>
       );
@@ -87,10 +87,10 @@ const AddBorrowDeposite = ({ mid }) => {
     if (PaymentData.amount <= 0) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Should be Grether Than
+          <span className="font-medium">Error !</span> Amount Should be Grether Than
           0...
         </div>
       );
@@ -129,10 +129,10 @@ const AddBorrowDeposite = ({ mid }) => {
             });
             setValidationError(
               <div
-                class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+                className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
                 role="alert"
               >
-                <span class="font-medium">Success !</span> Deposite Added
+                <span className="font-medium">Success !</span> Deposite Added
                 Successfully.
               </div>
             );

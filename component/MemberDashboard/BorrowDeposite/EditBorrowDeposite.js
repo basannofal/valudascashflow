@@ -64,22 +64,22 @@ const EditBorrowDeposite = ({ mid, id }) => {
         // Validate all fields
 
         if (isNaN(PaymentData.amount)) {
-            setValidationError(<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-                <span class="font-medium">Error !</span> Amount Accept Only Digit Number...
+            setValidationError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                <span className="font-medium">Error !</span> Amount Accept Only Digit Number...
             </div>);
             return;
         }
 
         if (PaymentData.amount <= 0) {
-            setValidationError(<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-                <span class="font-medium">Error !</span> Amount Should be Grether Than 0...
+            setValidationError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                <span className="font-medium">Error !</span> Amount Should be Grether Than 0...
             </div>);
             return;
         }
 
         if (((parseInt(PaymentData.amount) + totalborrowdeposite) - oldamount) > totalborrow) {
-            setValidationError(<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-                <span class="font-medium">Error !</span> {`You Have Left Only ${totalborrow - totalborrowdeposite + oldamount} Rs`}
+            setValidationError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                <span className="font-medium">Error !</span> {`You Have Left Only ${totalborrow - totalborrowdeposite + oldamount} Rs`}
             </div>);
             return;
         }
@@ -97,8 +97,8 @@ const EditBorrowDeposite = ({ mid, id }) => {
                 />,
                 document.getElementById("CustomComponent")
             );
-            setValidationError(<div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 " role="alert">
-                <span class="font-medium">Success !</span> Refund Payment Updated Successfully.
+            setValidationError(<div className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 " role="alert">
+                <span className="font-medium">Success !</span> Refund Payment Updated Successfully.
             </div>);
         } catch (error) {
             console.log(error);

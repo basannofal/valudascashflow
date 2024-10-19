@@ -64,10 +64,10 @@ const AddPayment = ({ mid }) => {
     if (isNaN(PaymentData.amount)) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Accept Only Digit
+          <span className="font-medium">Error !</span> Amount Accept Only Digit
           Number...
         </div>
       );
@@ -77,10 +77,10 @@ const AddPayment = ({ mid }) => {
     if (PaymentData.amount <= 0) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Amount Should be Grether Than
+          <span className="font-medium">Error !</span> Amount Should be Grether Than
           0...
         </div>
       );
@@ -90,10 +90,10 @@ const AddPayment = ({ mid }) => {
     if (PaymentData.cid == 0) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Select Category...
+          <span className="font-medium">Error !</span> Select Category...
         </div>
       );
       return;
@@ -115,10 +115,10 @@ const AddPayment = ({ mid }) => {
           onConfirm={() => {
             setValidationError(
               <div
-                class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+                className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
                 role="alert"
               >
-                <span class="font-medium">Success !</span> Payment Added
+                <span className="font-medium">Success !</span> Payment Added
                 Successfully.
               </div>
             );

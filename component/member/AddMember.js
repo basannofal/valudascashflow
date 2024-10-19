@@ -83,10 +83,10 @@ const AddMember = () => {
     if (isNaN(memberData.mobileNo) || memberData.mobileNo.length != 10) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Enter Correct Mobile No...
+          <span className="font-medium">Error !</span> Enter Correct Mobile No...
         </div>
       );
       return;
@@ -97,10 +97,10 @@ const AddMember = () => {
       if (!emailRegex.test(memberData.email)) {
         setValidationError(
           <div
-            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
             role="alert"
           >
-            <span class="font-medium">Error !</span> Enter Correct Email...
+            <span className="font-medium">Error !</span> Enter Correct Email...
           </div>
         );
         return;
@@ -111,10 +111,10 @@ const AddMember = () => {
       if (isNaN(memberData.aadharNo) || memberData.aadharNo.length != 12) {
         setValidationError(
           <div
-            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
             role="alert"
           >
-            <span class="font-medium">Error !</span> Enter Correct Aadhar No...
+            <span className="font-medium">Error !</span> Enter Correct Aadhar No...
           </div>
         );
         return;
@@ -128,10 +128,10 @@ const AddMember = () => {
     if (memberExists) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Member already exists. Please
+          <span className="font-medium">Error !</span> Member already exists. Please
           try again with a different name...
         </div>
       );
@@ -139,10 +139,10 @@ const AddMember = () => {
     } else if (NumberExists) {
       setValidationError(
         <div
-          class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
           role="alert"
         >
-          <span class="font-medium">Error !</span> Mobile Number Already
+          <span className="font-medium">Error !</span> Mobile Number Already
           Exist...
         </div>
       );
@@ -173,10 +173,10 @@ const AddMember = () => {
               });
               setValidationError(
                 <div
-                  class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
+                  className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 "
                   role="alert"
                 >
-                  <span class="font-medium">Success !</span> Member Added
+                  <span className="font-medium">Success !</span> Member Added
                   Successfully.
                 </div>
               );

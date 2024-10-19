@@ -61,22 +61,22 @@ const UpdatePayment = ({ id, mid }) => {
         // Validate all fields
 
         if (isNaN(PaymentData.amount)) {
-            setValidationError(<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-                <span class="font-medium">Error !</span> Amount Accept Only Digit Number...
+            setValidationError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                <span className="font-medium">Error !</span> Amount Accept Only Digit Number...
             </div>);
             return;
         }
 
         if (PaymentData.amount <= 0) {
-            setValidationError(<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-                <span class="font-medium">Error !</span> Amount Should be Grether Than 0...
+            setValidationError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                <span className="font-medium">Error !</span> Amount Should be Grether Than 0...
             </div>);
             return;
         }
 
         if (PaymentData.cid == 0) {
-            setValidationError(<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-                <span class="font-medium">Error !</span> Select Category...
+            setValidationError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                <span className="font-medium">Error !</span> Select Category...
             </div>);
             return;
         }
@@ -94,8 +94,8 @@ const UpdatePayment = ({ id, mid }) => {
                 />,
                 document.getElementById("CustomComponent")
             )
-            setValidationError(<div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 " role="alert">
-                <span class="font-medium">Success !</span> Payment Updated Successfully.
+            setValidationError(<div className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 " role="alert">
+                <span className="font-medium">Success !</span> Payment Updated Successfully.
             </div>);
         } catch (error) {
             ReactDOM.render(

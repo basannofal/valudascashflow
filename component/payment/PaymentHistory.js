@@ -103,13 +103,13 @@ const PaymentHistory = () => {
         <>
             {/* Display Data */}
 
-            <div class="bottom-data">
-                <div class="orders">
-                    <div class="header">
-                        <i class='bx bx-receipt'></i>
+            <div className="bottom-data">
+                <div className="orders">
+                    <div className="header">
+                        <i className='bx bx-receipt'></i>
                         <h3>All History</h3>
-                        <i class='bx bx-filter'></i>
-                        <i class='bx bx-search'></i>
+                        <i className='bx bx-filter'></i>
+                        <i className='bx bx-search'></i>
                     </div>
                     <table>
                         <thead>
@@ -151,7 +151,7 @@ const PaymentHistory = () => {
                             </tbody>
                             :
                             (
-                                <td colSpan="4" style={{ paddingTop: "1em" }}>
+                               <tbody><tr> <td colSpan="4" style={{ paddingTop: "1em" }}>
                                     <div> {/* Wrap the content in a div */}
                                         {payment.length === 0 ? (
                                             <SkeletonTable numRows={4} numColumns={2} color="#FF5555" />
@@ -161,7 +161,7 @@ const PaymentHistory = () => {
                                             </div>
                                         )}
                                     </div>
-                                </td>
+                                </td></tr></tbody>
                             )
                         }
                     </table>

@@ -472,7 +472,7 @@ const Dashboard = ({ memberId }) => {
           <i className="bx bx-cloud-download"></i>
           <span>Download Member Slip</span>
           <i
-            class="bx bx-dots-vertical-rounded"
+            className="bx bx-dots-vertical-rounded"
             onClick={handleDropdownIconClick}
           ></i>
         </a> */}
@@ -615,8 +615,8 @@ const Dashboard = ({ memberId }) => {
         </div>
       </div>
 
-      <div class="bottom-data">
-        <div class="orders">
+      <div className="bottom-data">
+        <div className="orders">
           <div className="header">
             <i className="bx bx-receipt"></i>
             <h3>{categoryLabels[selectedCategory]}</h3>
@@ -732,8 +732,8 @@ const Dashboard = ({ memberId }) => {
             onPageChange={handlePageChange}
           />
 
-          {/* <div class="header">
-            <i class="bx bx-receipt"></i>
+          {/* <div className="header">
+            <i className="bx bx-receipt"></i>
             <h3>Member Details</h3>
           </div>
           {memberData ? (

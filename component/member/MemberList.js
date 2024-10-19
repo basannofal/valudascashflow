@@ -40,7 +40,7 @@ const MemberList = () => {
     : member;
 
   // pagination
-  const itemPerPage = 3;
+  const itemPerPage = 100;
   const [currentPage, setCurrentPage] = useState(0);
   const startIndex = currentPage * itemPerPage;
   const endIndex = startIndex + itemPerPage;
@@ -122,15 +122,14 @@ const MemberList = () => {
                 {rows.map((e, i) => {
                   return (
                     <tr key={e.id}>
-                      <Link href={`/memberdashboard/${e.id}`}>
-                        <td>
-                          <img
-                            src="/images/user.png"
-                            alt="Profile"
-                          />
+                       <td>
+                       <Link href={`/memberdashboard/${e.id}`}>
+                        <div className="flex" style={{ gap: '10px' }}>
+                          <img src="/images/user.png" alt="Profile" />
                           <p>{`${e.fname} ${e.mname} ${e.lname}`}</p>
-                        </td>
+                        </div>
                       </Link>
+                        </td>
                       <td>{e.address} </td>
                       <td>{e.mobile_no} </td>
                       <td>{e.email} </td>
@@ -153,6 +152,7 @@ const MemberList = () => {
                 })}
               </tbody>
             ) : (
+              <tbody><tr>
               <td colSpan="4" style={{ paddingTop: "1em" }}>
                 <div>
                   {" "}
@@ -167,7 +167,7 @@ const MemberList = () => {
                     </div>
                   )}
                 </div>
-              </td>
+              </td></tr></tbody>
             )}
           </table>
           {/* pagination start */}

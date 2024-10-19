@@ -1,26 +1,43 @@
-import mysql from "mysql2";
+import mysql from "mysql2/promise";
 
-const pool = mysql.createPool({
-  host: "localhost",
-  // port: 'YOUR_MYSQL_PORT', // Typically 3306
-  // user: "root",
-  // password: "",
-  // database: "cash_flow",
-  // waitForConnections: true,
-  // max_connections: 150, // Set the maximum number of connections
+let pool;
 
-  // host: "aufcart.com",
-  // // port: '3306', // Typically 3306
-  // user: "valudaaa_cash_flow",
-  // password: "iXR%suDt).BI",
-  // database: "valudaaa_cash_flow",
+const createPool = () => {
+  return mysql.createPool({
+    host: process.env.DB_HOST || "localhost",
+    port: process.env.DB_PORT || 3306, // Default port
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD || "",
+    database: process.env.DB_NAME || "valudaaa_cash_flow",
 
-  host: "codinghelps.com",
-  // port: '3306', // Typically 3306
-  user: "codinghelps_cash_flow",
-  password: "isd)t-HEq&E!",
-  database: "codinghelps_cash_flow",
-});
-const conn = pool.promise();
+    // Connection pool settings
+    waitForConnections: true,
+    connectionLimit: 10, // Adjust based on your needs
+    queueLimit: 0, // Unlimited queue length
+    acquireTimeout: 10000, // 10 seconds timeout for acquiring a connection
+    idleTimeout: 10000 // 10 seconds for idle connections
+  });
+};
+
+const getPool = () => {
+  if (!pool) {
+    pool = createPool();
+  }
+  return pool;
+};
+
+// Export the connection pool
+const conn = getPool();
 
 export default conn;
+
+// Function to test the connection
+export const testConnection = async () => {
+  try {
+    const connection = await conn.getConnection();
+    console.log("Connected to the database!");
+    connection.release(); // Release the connection back to the pool
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
+};

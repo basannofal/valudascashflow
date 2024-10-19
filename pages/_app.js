@@ -11,9 +11,12 @@ export default function App({ Component, pageProps }) {
   return <>
       <Head>
         <title>Cash Flow</title>
+        
       </Head>
+
     <Provider store={store}>
       <Component {...pageProps} />
     </Provider>
+
   </>
 }

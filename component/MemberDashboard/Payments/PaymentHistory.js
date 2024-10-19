@@ -99,13 +99,13 @@ const PaymentHistory = ({ mid }) => {
     <>
       {/* Display Data */}
 
-      <div class="bottom-data">
-        <div class="orders">
-          <div class="header">
-            <i class="bx bx-receipt"></i>
+      <div className="bottom-data">
+        <div className="orders">
+          <div className="header">
+            <i className="bx bx-receipt"></i>
             <h3>All History</h3>
-            <i class="bx bx-filter"></i>
-            <i class="bx bx-search"></i>
+            <i className="bx bx-filter"></i>
+            <i className="bx bx-search"></i>
           </div>
           <table>
             <thead>
@@ -152,15 +152,15 @@ const PaymentHistory = ({ mid }) => {
                 })}
               </tbody>
             ) : payment.length == 0 ? (
-              <td colSpan="7" style={{ paddingTop: "1em" }}>
+             <tbody><tr> <td colSpan="7" style={{ paddingTop: "1em" }}>
                 <div>
-                  {" "}
+                  {/* {" "} */}
                   {/* Wrap the content in a div */}
                   <div className="flex justify-center items-center">
                     <b className="text-red-500 m-8">Payment Data Not found</b>
                   </div>
                 </div>
-              </td>
+              </td></tr></tbody>
             ) : (
               <SkeletonTable numRows={4} numColumns={2} color="#FF5555" />
             )}
