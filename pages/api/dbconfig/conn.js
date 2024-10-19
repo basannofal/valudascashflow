@@ -4,11 +4,11 @@ let pool;
 
 const createPool = () => {
   return mysql.createPool({
-    host: process.env.DB_HOST || "localhost",
-    port: process.env.DB_PORT || 3306, // Default port
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "",
-    database: process.env.DB_NAME || "valudaaa_cash_flow",
+    host: "tailorg.com",
+    port: 3306, // Default port
+    user: "tailorg_cashflow",
+    password: "tailorg_cashflow",
+    database: "tailorg_cashflow",
 
     // Connection pool settings
     waitForConnections: true,
